@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — HelpDesk</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <h1>HelpDesk</h1>
+        <p>Система технической поддержки</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+
+        <h2>Вход в систему</h2>
+
+        <form method="POST">
+
+            <label for="username">Логин</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                required
+            >
+
+            <label for="password">Пароль</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+            >
+
+            <button type="submit" class="button">
+                Войти
+            </button>
+
+        </form>
+
+        <p>
+            Нет аккаунта?
+            <a href="/register">Зарегистрироваться</a>
+        </p>
+
+    </section>
+
+</main>
+
+</body>
+</html>

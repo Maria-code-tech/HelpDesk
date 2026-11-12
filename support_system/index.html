@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HelpDesk</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+
+        <h1>HelpDesk</h1>
+        <p>Система технической поддержки</p>
+
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+
+        <h2>Добро пожаловать!</h2>
+
+        <p>
+            Здравствуйте, {{ session["username"] }}!
+        </p>
+
+        <p>
+            Создавайте заявки и отслеживайте решение проблем.
+        </p>
+
+        <a href="/create" class="button">
+            Создать заявку
+        </a>
+
+        <a href="/logout" class="logout">
+            Выйти
+        </a>
+
+    </section>
+
+
+    <section class="tickets">
+
+        <h2>Мои заявки</h2>
+
+<form method="GET" action="/">
+    <label for="search">Поиск заявок</label>
+
+    <input
+        type="text"
+        id="search"
+        name="q"
+        placeholder="Введите название заявки"
+        value="{{ search_query }}"
+    >
+
+    <button type="submit" class="button">
+        Найти
+    </button>
+</form>
+
+
+        {% for ticket in tickets %}
+
+            <div class="ticket">
+
+                <div>
+
+                    <h3>{{ ticket["title"] }}</h3>
+
+                    <p>
+                        Категория: {{ ticket["category"] }}
+                    </p>
+
+                    <p>
+                        {{ ticket["description"] }}
+                    </p>
+
+                </div>
+
+                <span class="status new">
+                    {{ ticket["status"] }}
+                </span>
+
+            </div>
+
+        {% else %}
+
+            <p>Пока заявок нет.</p>
+
+        {% endfor %}
+
+    </section>
+
+</main>
+
+</body>
+</html>

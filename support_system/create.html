@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Создать заявку — HelpDesk</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <h1>HelpDesk</h1>
+        <p>Создание заявки</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+
+        <h2>Новая заявка</h2>
+
+        <form method="POST" action="/create">
+
+            <label for="title">Заголовок проблемы</label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                required
+            >
+
+            <label for="category">Категория</label>
+
+            <select id="category" name="category" required>
+
+                <option value="Компьютер">Компьютер</option>
+
+                <option value="Программное обеспечение">
+                    Программное обеспечение
+                </option>
+
+                <option value="Сеть и интернет">
+                    Сеть и интернет
+                </option>
+
+                <option value="Доступ к аккаунту">
+                    Доступ к аккаунту
+                </option>
+
+                <option value="Другое">Другое</option>
+
+            </select>
+
+            <label for="description">
+                Описание проблемы
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                required
+            ></textarea>
+
+            <button type="submit" class="button">
+                Отправить заявку
+            </button>
+
+        </form>
+
+        <a href="/">Вернуться на главную</a>
+
+    </section>
+
+</main>
+
+</body>
+</html>
