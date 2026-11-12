@@ -1,0 +1,49 @@
+--- a/app.py
++++ b/app.py
+@@
+ from flask import (
+     Flask,
+     render_template,
+     request,
+     redirect,
+     session,
+-    url_for,
+-    jsonify
++    url_for
+ )
+@@
+-    query = f"""
+-        SELECT * FROM tickets
+-        WHERE user_id = {session["user_id"]}
+-        AND title LIKE '%{q}%'
+-    """
+-    tickets = db.execute(query).fetchall()
++    query = """
++        SELECT * FROM tickets
++        WHERE user_id = ? AND title LIKE ?
++    """
++    tickets = db.execute(
++        query,
++        (session["user_id"], "%" + q + "%")
++    ).fetchall()
+@@
+-# Уязвимость: раскрытие данных пользователей
+-@app.route("/users")
+-def users():
+-    connection = get_db()
+-
+-    users = connection.execute(
+-        "SELECT id, username, password FROM users"
+-    ).fetchall()
+-
+-    connection.close()
+-
+-    return jsonify([
+-        dict(user) for user in users
+-    ])
+-
+-
+ # Запуск приложения
+ if __name__ == "__main__":
+     init_db()
+     app.run(debug=True)
