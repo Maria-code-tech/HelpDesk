@@ -149,8 +149,6 @@ def logout():
     return redirect(url_for("login"))
 
 
-# --- Служебные маршруты ---
-
 @app.route("/users")
 def users():
     # УЯЗВИМОСТЬ 2: Открытый доступ к логинам и хешам паролей всех пользователей
